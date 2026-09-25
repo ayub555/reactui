@@ -3,7 +3,7 @@ function Header()
     return <div>
         <nav class="navbar navbar-dark bg-primary navbar-expand-lg">
           <div class="container-fluid">
-            <a class="navbar-brand" href="#">Navbar</a>
+            <a class="navbar-brand" href="#">Riyan App</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
               <span class="navbar-toggler-icon"></span>
             </button>
@@ -19,6 +19,8 @@ function Header()
                   <ul class="dropdown-menu">
                     <li><a class="dropdown-item" href="/new-emp">Add Employee</a></li>
                     <li><a class="dropdown-item" href="/emp-list">Employee List</a></li>
+                    <li><a class="dropdown-item" href="/emp-grid">Employee Grid</a></li>
+                    <li><a class="dropdown-item" href="/emp-advance-grid">Employee Advance Grid</a></li>
                   </ul>
                 </li>
                 <li class="nav-item">

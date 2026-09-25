@@ -1,0 +1,8 @@
+.card-home {
+    padding: 10px !important;
+}
+
+/* centers the header text in ag-grid columns */
+.text-center-header .ag-header-cell-label {
+    justify-content: center;
+}

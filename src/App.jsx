@@ -8,6 +8,8 @@ import Aboutus from './components/about';
 import Contactus from './components/contact';
 import AddEmp from './components/addemp'
 import EmpList from './components/emplist'
+import EmpGrid from './components/empgrid'
+import EmpAdvanceGrid from './components/empadvancegrid'
 function App() {
 
   return (
@@ -19,6 +21,8 @@ function App() {
         <Route path="/about-us" element={<Aboutus />} />
         <Route path="/new-emp" element={<AddEmp />} />
         <Route path="/emp-list" element={<EmpList />} />
+        <Route path="/emp-grid" element={<EmpGrid />} />
+        <Route path="/emp-advance-grid" element={<EmpAdvanceGrid />} />
       </Routes>
       <Footer/>
     </BrowserRouter>

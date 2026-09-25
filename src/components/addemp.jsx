@@ -1,12 +1,23 @@
-import './home.css'
+import './style.css'
 import { useState, useRef, useEffect } from 'react'
+import { useNavigate } from 'react-router-dom'
 import stateService from '../services/stateService'
+import educationService from '../services/educationService'
 import employeeService from '../services/employeeService'
 
 function AddEmp()
 {
     const today = new Date().toISOString().split('T')[0]
 
+    //Close button logic start
+    const navigate = useNavigate()
+
+    function handleClose()
+    {
+        navigate('/')
+    }
+    
+    //States list
     // holds the list of states fetched from the API
     const [states, setStates] = useState([])
 
@@ -17,6 +28,18 @@ function AddEmp()
             .catch((error) => console.error('Failed to load states:', error))
     }, [])
 
+    //Education List
+    // holds the list of education options fetched from the API
+    const [educations, setEducations] = useState([])
+
+    // fetch the education options once when the page loads
+    useEffect(() => {
+        educationService.getEducations()
+            .then((data) => setEducations(data))
+            .catch((error) => console.error('Failed to load education options:', error))
+    }, [])
+
+    //Binding the data to input fields
     // refs to read the value of each mandatory field
     const firstNameRef = useRef(null)
     const surnameRef = useRef(null)
@@ -31,6 +54,10 @@ function AddEmp()
     // holds the error message for each field, empty string means no error
     const [errors, setErrors] = useState({})
 
+    // holds the success message shown in the footer after saving
+    const [successMessage, setSuccessMessage] = useState('')
+
+    //Validations & Save the data
     function handleSave()
     {
         const newErrors = {}
@@ -59,8 +86,11 @@ function AddEmp()
 
         setErrors(newErrors)
 
+        //Call addEmploye API
         // if there are no errors, the form is valid and can be saved
         if (Object.keys(newErrors).length === 0) {
+
+          //Prepare JSON Object
             const employee = {
                 firstname: firstNameRef.current.value,
                 surname: surnameRef.current.value,
@@ -74,7 +104,7 @@ function AddEmp()
             }
 
             employeeService.addEmployee(employee).then(() => {
-                alert('Employee saved successfully')
+                setSuccessMessage('New employee1 added successfully.')
             })
         }
     }
@@ -148,9 +178,10 @@ function AddEmp()
       <label for="education" class="col-3 col-form-label text-start">Education</label>
       <div class="col-5">
         <select class="form-select" id="education" ref={educationRef}>
-          <option value="">Select education</option>
-          <option value="B.Tech">B.Tech</option>
-          <option value="M.Tech">M.Tech</option>
+          <option value="">--Select Education--</option>
+          {educations.map((edu) => (
+            <option key={edu.eduId} value={edu.eduId}>{edu.education}</option>
+          ))}
         </select>
         {errors.education && <div class="text-danger text-start">{errors.education}</div>}
       </div>
@@ -176,8 +207,16 @@ function AddEmp()
     </div>
   </div>
   <div class="card-footer text-body-secondary">
-    <input type="button" class="btn btn-primary me-2" value="Save" onClick={handleSave}></input>
-    <input type="button" class="btn btn-warning" value="Close"></input>
+    <div class="row">
+      <div class="col-md-6">
+        {successMessage && <div class="text-success mt-2">{successMessage}</div>}
+      </div>
+      <div class="col-md-6 align-items-left">
+        <input type="button" class="btn btn-primary me-2" value="Save" onClick={handleSave}></input>
+        <input type="button" class="btn btn-warning" value="Close" onClick={handleClose}></input>
+      </div>
+    </div>
+    
   </div>
 </div>
 
