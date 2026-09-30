@@ -9,7 +9,7 @@ function ContactUs()
 
     function handleClose()
     {
-        navigate('/')
+        navigate('/home')
     }
 
     // refs to read the value of each mandatory field

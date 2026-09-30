@@ -128,7 +128,7 @@ function EmpAdvanceGrid()
 
     function handleClose()
     {
-        navigate('/')
+        navigate('/home')
     }
 
     return <div class="card card-home">

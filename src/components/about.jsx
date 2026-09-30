@@ -8,7 +8,7 @@ function Aboutus()
 
   function handleClose() {
     // ...do login logic
-    navigate('/');
+    navigate('/home');
   }
 
   function contactUs() {

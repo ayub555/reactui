@@ -14,7 +14,7 @@ function AddEmp()
 
     function handleClose()
     {
-        navigate('/')
+        navigate('/home')
     }
     
     //States list

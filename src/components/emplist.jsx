@@ -10,7 +10,7 @@ function EmpList()
 
     function handleClose()
     {
-        navigate('/')
+        navigate('/home')
     }
 
     // holds the list of employees fetched from the API
